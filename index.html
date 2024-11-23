@@ -10,17 +10,17 @@
             let msg = document.getElementById("msg");
             const ndef = new NDEFReader();
             let ignoreRead = true;
+            await ndef.scan();
+            ignoreRead = false;
+            msg.innerHTML = "Ready!";
             ndef.onreading = (event) => {
                 if (ignoreRead) {
                     return;
                 }
 
-                msg.innerHTML("I read something");
+                msg.innerHTML = "I read something";
             };
 
-            await ndef.scan();
-            ignoreRead = false;
-            msg.innerHTML = "Ready!";
         </script>
     </body>
 </html>
