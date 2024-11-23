@@ -5,8 +5,9 @@
         <title>NFC Test</title>
     </head>
     <body>
-        <h1 id="msg"></h1>
+        <h1 id="msg">Not ready</h1>
         <script>
+            let msg = document.getElementById("msg");
             const ndef = new NDEFReader();
             let ignoreRead = true;
             ndef.onreading = (event) => {
@@ -14,11 +15,12 @@
                     return;
                 }
 
-                console.log("We read a tag, but not during pending write!");
+                msg.innerHTML("I read something");
             };
 
             await ndef.scan();
             ignoreRead = false;
+            msg.innerHTML = "Ready!";
         </script>
     </body>
 </html>
